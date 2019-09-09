@@ -1,15 +1,20 @@
 const puppeteer = require('puppeteer');
+const CRED_PATH = require ('./credentials.json');
 (async () => {
   const browser = await puppeteer.launch({ headless: false })
   const page = await browser.newPage()
-  await page.goto('https://autogestion.personal.com.ar/login/')
-  await page.setViewport({ width: 1920, height: 969 })
 
-  const frame = page.frames().find(frame => frame.url() === 'https://autogestion.personal.com.ar/login/');
-  const text = frame.evaluate(() => document.querySelector('#loginIframe'));
+  await page.goto('https://autogestion.personal.com.ar/login/',{waitUntil: 'networkidle0'})
+  await page.setViewport({ width: 1366, height: 768 })
 
+  await page.waitForSelector('iframe[id="loginIframe"]')
+  const elementHandle = await page.$(
+    'iframe[id="loginIframe"]'
+    );
+const frame = await elementHandle.contentFrame();
 
-  console.lo g(text)
+await frame.type('#idToken1', CRED_PATH.number, { delay: 100 });
+await frame.type('#idToken2', CRED_PATH.clave, { delay: 100 });
+await frame.click('#loginButton_0', { delay: 100 });
 
-  // document.querySelector('iframe[id="loginIframe"]')
 })();
