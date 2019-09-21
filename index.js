@@ -1,13 +1,19 @@
 const puppeteer = require('puppeteer');
-const CRED_PATH = require ('./credentials.json');
+const CRED_PATH = require ('./credentialsloginpersonal.json');
+const path = require('path');
+const fs = require('fs');
+//const test = 'C:\\Users\\Agustin Moreno\\Desktop\\Proyectos The Eye\\Facturas-personal\\pdf\\';
+//const directoryPath = require('./test1.js')
+
+
 
 (async () => {
 
   try { 
     const browser = await puppeteer.launch({ headless: false,args: ['--start-maximized'] })
     const page = await browser.newPage()
-
-    await page._client.send('Page.setDownloadBehavior', {behavior: 'allow', downloadPath: './'});
+    const directoryPath = require('./test1.js')
+    await page._client.send('Page.setDownloadBehavior', {behavior: 'allow', downloadPath: 'C:\\Users\\Agustin Moreno\\Desktop\\Proyectos The Eye\\Facturas-personal\\pdf'});
     await page.goto('https://serviciosempresa.personal.com.ar/sie/sie/login.aspx',{waitUntil: 'networkidle0'})
 
 
@@ -50,17 +56,12 @@ const CRED_PATH = require ('./credentials.json');
     await page.waitForSelector('#ctl00_MainCentro_grvFacturas_ctl02_imgDescargar')
     await page.click('#ctl00_MainCentro_grvFacturas_ctl02_imgDescargar')
 
-    //lupa(search)
-    /*await page.waitForXPath('//*[@id="tpi-navbar-item3"]/a');  
-    const linkHandlers = await page.$x('//*[@id="tpi-navbar-item3"]/a');  
-    await linkHandlers[0].click({button : 'right'})
-
-    await page.waitFor(2000);
 
 
-    await page.waitForXPath('//*[@id="tpi-navbar-item3-content"]/li[2]/ul/li[3]/ul/li[2]/a');  
-    const linkHandlers11 = await page.$x('//*[@id="tpi-navbar-item3-content"]/li[2]/ul/li[3]/ul/li[2]/a');  
-    await linkHandlers11[0].click()*/
+      
+
+
+    
   }catch(e){
     console.log(error)
   }
