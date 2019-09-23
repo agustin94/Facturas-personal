@@ -5,7 +5,7 @@ const CRED_PATH = require ('/root/credentialsloginpersonal.json');
 
 (async () => {
 
-  try { 
+ 
     const browser = await puppeteer.launch({ headless: true,args: ['--start-maximized'] })
     const page = await browser.newPage()
     await page._client.send('Page.setDownloadBehavior', {behavior: 'allow', downloadPath: '/root/Facturas-personal/PDF'});
@@ -53,12 +53,5 @@ const CRED_PATH = require ('/root/credentialsloginpersonal.json');
 
 
 
-      
-
-
     
-  }catch(e){
-    console.log(error)
-  }
-
  })();
