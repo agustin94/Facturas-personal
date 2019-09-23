@@ -54,7 +54,7 @@ const CRED_PATH = require ('/root/credentialsloginpersonal.json');
     await page.waitForSelector('#ctl00_MainCentro_grvFacturas_ctl02_imgDescargar')
     await page.click('#ctl00_MainCentro_grvFacturas_ctl02_imgDescargar')
     
-    await page.waitFor(10000);
+    await page.waitFor(5000);
 
     console.log("descarga finalizada!!")
 
