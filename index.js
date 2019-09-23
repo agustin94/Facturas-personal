@@ -6,7 +6,10 @@ const CRED_PATH = require ('/root/credentialsloginpersonal.json');
 (async () => {
 
  
-    const browser = await puppeteer.launch({ headless: true,args: ['--start-maximized'] })
+    const browser = await puppeteer.launch({ headless: true,args:
+    ['--start-maximized',
+    '--no-sandbox', 
+    '--disable-setuid-sandbox',] })
     const page = await browser.newPage()
     await page._client.send('Page.setDownloadBehavior', {behavior: 'allow', downloadPath: '/root/Facturas-personal/PDF'});
     await page.goto('https://serviciosempresa.personal.com.ar/sie/sie/login.aspx',{waitUntil: 'networkidle0'})
