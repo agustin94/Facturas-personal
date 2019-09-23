@@ -1,19 +1,14 @@
 const puppeteer = require('puppeteer');
-const CRED_PATH = require ('./credentialsloginpersonal.json');
-const path = require('path');
-const fs = require('fs');
-//const test = 'C:\\Users\\Agustin Moreno\\Desktop\\Proyectos The Eye\\Facturas-personal\\pdf\\';
-//const directoryPath = require('./test1.js')
+const CRED_PATH = require ('/root/credentialsloginpersonal.json');
 
 
 
 (async () => {
 
   try { 
-    const browser = await puppeteer.launch({ headless: false,args: ['--start-maximized'] })
+    const browser = await puppeteer.launch({ headless: true,args: ['--start-maximized'] })
     const page = await browser.newPage()
-    const directoryPath = require('./test1.js')
-    await page._client.send('Page.setDownloadBehavior', {behavior: 'allow', downloadPath: 'C:\\Users\\Agustin Moreno\\Desktop\\Proyectos The Eye\\Facturas-personal\\pdf'});
+    await page._client.send('Page.setDownloadBehavior', {behavior: 'allow', downloadPath: '/root/Facturas-personal/PDF'});
     await page.goto('https://serviciosempresa.personal.com.ar/sie/sie/login.aspx',{waitUntil: 'networkidle0'})
 
 
